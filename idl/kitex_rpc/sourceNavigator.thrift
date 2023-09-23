@@ -1,4 +1,4 @@
-namespace go sourceNavigatorService
+namespace go rpc
 
 
 enum Code{

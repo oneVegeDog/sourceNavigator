@@ -1,4 +1,4 @@
-namespace go userService
+namespace go http
 
 enum Code{
     SUCCESS = 200;
