@@ -1,7 +1,18 @@
-namespace go userService
+namespace go sourceNavigatorService
 
-include "baseresp.thrift"
 
+enum Code{
+    SUCCESS = 200;
+    SERVER_BUSY = 500;
+    NO_POWER = 401;
+}
+
+
+struct baseresp{
+    1:string message
+    2:Code statue_code
+    3:i64 service_time
+}
 
 struct Source{
     1:string url
@@ -15,7 +26,7 @@ struct AddSourceReq{
 }
 
 struct AddSourceResp{
-    1:baseresp.baseresp baseresp
+    1:baseresp baseresp
 }
 
 struct FindSourceByNameReq{
@@ -24,7 +35,7 @@ struct FindSourceByNameReq{
 
 struct FindSourceByNameResp{
     1:Source source
-    2:baseresp.baseresp baseresp
+    2:baseresp baseresp
 }
 
 struct GetPageSourceReq{
@@ -55,7 +66,7 @@ struct FindUserReq{
 struct FindUserResp{
     1:User user
     2:bool isFind
-    3:baseresp.baseresp baseresp
+    3:baseresp baseresp
 }
 
 struct CheckUserReq{
@@ -65,11 +76,11 @@ struct CheckUserReq{
 
 struct CheckUserResp{
     1:bool isExsit
-    2:baseresp.baseresp baseresp
+    2:baseresp baseresp
 }
 
 service SourceNavigatorService{
-    baseresp.baseresp register(1:CreateUserReq req),
+    baseresp register(1:CreateUserReq req),
     FindUserResp findUserByName(1:FindUserReq req),
     CheckUserResp checkedUser(CheckUserReq req),
     AddSourceResp addSource(1:AddSourceReq addReq),

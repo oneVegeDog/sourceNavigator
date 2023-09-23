@@ -1,6 +1,16 @@
 namespace go userService
 
-include "baseresp.thrift"
+enum Code{
+    SUCCESS = 200;
+    SERVER_BUSY = 500;
+    NO_POWER = 401;
+}
+
+struct baseresp{
+    1:string message
+    2:Code statue_code
+    3:i64 service_time
+}
 
 struct User{
     1:i64 id
@@ -19,7 +29,7 @@ struct FindUserReq{
 
 struct FindUserResp{
     1:User user
-    2:baseresp.baseresp baseresp
+    2:baseresp baseresp
 }
 
 struct CheckUserReq{
@@ -29,7 +39,7 @@ struct CheckUserReq{
 
 struct CheckUserResp{
     1:bool isExsit
-    2:baseresp.baseresp baseresp
+    2:baseresp baseresp
 }
 
 struct Source{
@@ -44,7 +54,7 @@ struct AddSourceReq{
 }
 
 struct AddSourceResp{
-    1:baseresp.baseresp baseresp
+    1:baseresp baseresp
 }
 
 struct FindSourceByNameReq{
@@ -53,7 +63,7 @@ struct FindSourceByNameReq{
 
 struct FindSourceByNameResp{
     1:Source source
-    2:baseresp.baseresp baseresp
+    2:baseresp baseresp
 }
 
 struct GetPageSourceReq{
@@ -65,7 +75,7 @@ struct GetPageSourceResp{
 }
 
 service UserService{
-    baseresp.baseresp register(1:CreateUserReq req)(
+    baseresp register(1:CreateUserReq req)(
         api.post = "/user/register"
     ),
     FindUserResp findUserByName(1:FindUserReq req)(
