@@ -1,4 +1,4 @@
-namespace go rpc
+namespace go source_rpc
 
 
 enum Code{
